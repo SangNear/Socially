@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { Heart, MessageCircleMore } from "lucide-react";
 import Image from "next/image";
+import { getPost } from "@/actions/post.action";
 
-const PostCard = ({ post }: { post: {} }) => {
+
+type Post = {
+    id: string;
+    author: {
+      id: string;
+      image: string | null;
+      username: string;
+      name: string | null;
+    };
+    comments: {
+      author: {
+        id: string;
+        image: string | null;
+        username: string;
+        name: string | null;
+      };
+    }[];
+    likes: any[];
+    _count: any;
+  };
+
+const PostCard = ({ post }: { post: Post }) => {
+    
   return (
     <div className="mt-5  bg-zinc-900 rounded-xl ">
       <div className=" py-4 flex flex-col gap-3">
